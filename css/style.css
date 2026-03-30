@@ -1,0 +1,269 @@
+@charset "UTF-8";
+
+
+
+/* ------------------------ */
+/*       Variablen          */
+/* ------------------------ */
+
+
+:root {
+    --body-color: #2a2d35;
+    --body-highlight: #3a3e4a;
+    --body-shadow: #1a1c22;
+
+    --btn-pink: #c4357a;
+    --btn-pink-top: #d94a8e;
+    --btn-pink-shadow: #7a1a48;
+
+    --btn-dark: #3c404c;
+    --btn-dark-top: #4a4f5e;
+    --btn-darker: #2e3240;
+    --btn-darker-top: #3a3f50;
+
+    --display-bg: #1a0828;
+    --display-glow: #d060ff;
+    --display-dim: #4a1870;
+
+    --font-display: 'Courier New', monospace;
+}
+
+
+
+
+
+
+/* ------------------------ */
+/* Allgemeine Einstellungen */
+/* ------------------------ */
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #13141a;
+    }
+
+
+
+
+
+
+
+/* ------------------------ */
+/*           Gehäuse        */
+/* ------------------------ */
+
+.calc-scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem 3rem;
+    perspective: 800px;
+}
+
+.calc-body {
+    width: 280px;
+    background: linear-gradient(160deg, var(--body-highlight) 0%, var(--body-color) 40%, var(--body-shadow) 100%);
+    border-radius: 18px 18px 28px 28px;
+    padding: 20px 18px 28px;
+    box-shadow:
+      0 2px 0 #4a4f5e inset,
+      0 -2px 0 #111318 inset,
+      2px 0 0 #3a3e4a inset,
+      -2px 0 0 #111318 inset,
+      0 20px 60px rgba(0,0,0,0.7),
+      0 4px 12px rgba(0,0,0,0.5),
+      0 1px 0 #5a5f70;
+    position: relative;
+    transform: rotateX(4deg);
+}
+
+.calc-body::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 18px; right: 18px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+
+.calc-base {
+    position: absolute;
+    bottom: -8px;
+    left: 10px; right: 10px;
+    height: 10px;
+    background: var(--body-shadow);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+
+
+
+/* ------------------------ */
+/*       Rechner-Kopf       */
+/* ------------------------ */
+
+
+.brand {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 12px;
+    padding-right: 2px;
+}
+
+.solar-strip {
+    height: 8px;
+    background: linear-gradient(90deg, #1a1a2e, #6b21a8, #db2777, #9333ea, #1a1a2e);
+    border-radius: 3px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    box-shadow: 0 0 6px rgba(180,0,255,0.25), 0 1px 0 rgba(0,0,0,0.3) inset;
+}
+
+
+
+
+
+/* ------------------------ */
+/*           Display        */
+/* ------------------------ */
+
+
+.display-frame {
+    background: #111318;
+    border-radius: 8px;
+    padding: 10px 12px 8px;
+    margin-bottom: 18px;
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.6) inset,
+        0 1px 0 rgba(180,80,255,0.08);
+}
+
+.display-screen {
+    background: var(--display-bg);
+    border-radius: 4px;
+    padding: 8px 10px 6px;
+    box-shadow:
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 2px 4px rgba(0,0,0,0.4) inset,
+        0 0 20px rgba(180,0,255,0.06) inset;
+    position: relative;
+    overflow: hidden;
+}
+
+.display-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px);
+    pointer-events: none;
+}
+
+.display-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    color: var(--display-dim);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.display-value {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: normal;
+    color: var(--display-glow);
+    text-align: right;
+    letter-spacing: 1px;
+    min-height: 42px;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(200,80,255,0.6), 0 0 20px rgba(180,0,255,0.3);
+    word-break: break-all;
+}
+
+
+
+
+
+/* ------------------------ */
+/*          Buttons         */
+/* ------------------------ */
+
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.btn {
+    position: relative;
+    height: 48px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    outline: none;
+    user-select: none;
+    transition: transform 80ms ease, box-shadow 80ms ease;
+}
+
+.btn-num {
+    background: linear-gradient(180deg, var(--btn-dark-top) 0%, var(--btn-dark) 50%, #30343f 100%);
+    color: #d0d4de;
+    box-shadow:
+        0 4px 0 #1e2028,
+        0 5px 2px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.07) inset;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.btn-op {
+    background: linear-gradient(180deg, var(--btn-pink-top) 0%, var(--btn-pink) 50%, #a02860 100%);
+    color: #fff0f8;
+    box-shadow:
+        0 4px 0 var(--btn-pink-shadow),
+        0 5px 2px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,200,220,0.2) inset;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.btn-fn {
+    background: linear-gradient(180deg, var(--btn-darker-top) 0%, var(--btn-darker) 50%, #252838 100%);
+    color: #a0a4b0;
+    font-size: 12px;
+    box-shadow:
+        0 4px 0 #181a22,
+        0 5px 2px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.05) inset;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.btn-zero {
+    grid-column: span 2;
+    text-align: left;
+    padding-left: 16px;
+}
+
+.btn:active, .btn.pressed {
+    transform: translateY(3px);
+    box-shadow:
+        0 1px 0 rgba(0,0,0,0.4),
+        0 1px 1px rgba(0,0,0,0.3),
+        0 1px 0 rgba(255,200,255,0.05) inset !important;
+}
+
+
+
